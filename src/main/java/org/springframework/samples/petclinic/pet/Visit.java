@@ -25,6 +25,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.ManyToAny;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.recoveryroom.RecoveryRoom;
@@ -113,14 +114,18 @@ public class Visit extends BaseEntity {
 	public void setPet(Pet pet) {
 		this.pet = pet;
 	}
+	
+	@ManyToOne(optional=true)
+	private RecoveryRoom rr;
 
 	public RecoveryRoom getRecoveryRoom() {
-		// To be implemented
-		return null;
+
+		return this.rr;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+
+		this.rr=room;
 	}
 
 }
